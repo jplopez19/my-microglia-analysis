@@ -1,0 +1,5 @@
+numpy
+matplotlib
+pandas
+cv2
+Pillow
