@@ -1,5 +1,5 @@
 # my-microglia-analysis
-<img alt=”React” src= "https://img.shields.io/github/license/{jploez19}/{my-microglia-analysis}.svg" />
+<img alt=”React” src= "https://img.shields.io/github/license/{jplopez19}/{my-microglia-analysis}.svg" />
 
 This software package is designed to automate manual processes, create reusable functions from code, and apply efficient data-cleaning methodologies. It aims to analyze microglia cells, particularly data from the Nance Lab, providing a robust and continuous integration of new functionalities.
 
