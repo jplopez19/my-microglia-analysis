@@ -1,77 +1,43 @@
-import numpy as np
-import matplotlib.image as mpimg 
-import matplotlib.pyplot as plt
-import pandas as pd
-import cv2
-from PIL import Image
-import os
+# functions.py
 
+from vampire import analysis as vampire_analysis
 
-def c(x):
-  col = plt.cm.twilight(x)
-  fig, ax = plt.subplots(figsize=(1,1))
-  fig.set_facecolor(col)
-  ax.axis("off")
-  plt.show()
+def preprocess_data(data, config):
+    # Placeholder for preprocessing logic specific to your project
+    # You can add data cleaning and preparation steps here
+    return data
 
-def color_image(im_file_path, csv_file_path, label_save_file_path):
+def run_vampire(preprocessed_data, config):
+    # Utilizing the VAMPIRE analysis from the vampire-analysis repository
+    return vampire_analysis.run_vampire(preprocessed_data, config)
 
-  #Reading in the image and its labels
-  img = mpimg.imread(im_file_path)
-  csv_df = pd.read_csv(csv_file_path)
+def postprocess_results(vampire_results, config):
+    # Placeholder for postprocessing logic specific to your project
+    # You can add data transformation and analysis steps here
+    return vampire_results
 
-  #Getting the file path from the file name
-  im_file_name_split = im_file_path.split('/')
-  length = len(im_file_name_split)
-  file_name = im_file_name_split[length-1]
+def write_results(postprocessed_results, output_dir):
+    # Placeholder for writing results
+    # You can add code to write the results to the specified output directory
+    pass
 
-  mask = np.zeros(np.asarray(img.shape)+2, dtype=np.uint8)
+def run_vampire_workflow(data, config, output_dir):
+    """
+    Run the VAMPIRE workflow on the given data with the given configuration.
+    :param data: The data to analyze.
+    :param config: The configuration for the analysis.
+    :param output_dir: The directory to write the output to.
+    """
+    # Preprocess the data
+    preprocessed_data = preprocess_data(data, config)
 
-  csv_df = csv_df[csv_df.Filename == file_name]
-  csv_df = csv_df.reset_index(drop=True)
+    # Run the VAMPIRE analysis
+    vampire_results = run_vampire(preprocessed_data, config)
 
-  for shapes in range(len(csv_df)):
-    shape_mode = (csv_df['Shape mode'][shapes]).astype(int)
-    start_pt = (csv_df['X'][shapes], csv_df['Y'][shapes])
-    area =csv_df['Area'][shapes]
+    # Postprocess the results
+    postprocessed_results = postprocess_results(vampire_results, config)
 
-    if img[csv_df['Y'][shapes]][csv_df['X'][shapes]]== 1:
-      if shape_mode==1: #0.5
-        cv2.floodFill(img, mask, start_pt, 0, flags=0)
-        mask[mask == 1] = 128
+    # Write the results to the output directory
+    write_results(postprocessed_results, output_dir)
 
-      elif shape_mode==2: #0.047
-        cv2.floodFill(img, mask, start_pt, 0, flags=0)
-        mask[mask == 1] = 12
-      elif shape_mode==3: #0.7
-        cv2.floodFill(img, mask, start_pt, 0, flags=0)
-        mask[mask == 1] = 179
-
-      elif shape_mode==4: #0.33
-        cv2.floodFill(img, mask, start_pt, 0, flags=0)
-        mask[mask == 1] = 85
-
-      elif shape_mode==5: #0.9
-        cv2.floodFill(img, mask, start_pt, 0, flags=0)
-        mask[mask == 1] = 230
-
-      if shapes == len(csv_df)-1:
-        mask = mask[1:-1, 1:-1]
-        mask[0][0] = 255
-
-        mask = mask.astype('float')
-        mask[mask==0] = np.nan
-
-        plt.imshow(mask,cmap='twilight')
-        plt.tick_params(
-          axis='x',
-          which='both',
-          bottom=False,
-          top=False,
-          labelbottom=False)
-        plt.yticks([])
-        plt.savefig(str(label_save_file_path + str(shape_mode) + file_name), bbox_inches = 'tight',
-        pad_inches = 0)
-
-        #img_to_save = Image.fromarray(mask)
-        #img_to_save.save(str(label_save_file_path + str(shape_mode) + file_name))
+# Additional functions can be added here as needed
