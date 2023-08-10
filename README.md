@@ -22,7 +22,6 @@ The software package can be applied to different datasets but is initially desig
 - **visualization.py:** Handles plots and data visualizations.
 - **config.py** or **settings.yaml:** Manages configurations and parameters used across the project.
 - **requirements.txt:** Lists all project dependencies.
-- **documentation/:** Contains essential documentation files.
 - **tests/:** Holds all test files for unit and integration testing.
 
 ## Testing
