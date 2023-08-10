@@ -1,13 +1,17 @@
-import os
+# config.py
 
-# The path to the directory of images to be processed
-IMAGE_DIR = os.path.join(os.path.dirname(__file__), 'images')
+# Path configurations
+DATA_PATH = 'path/to/your/data'
+OUTPUT_DIR = 'path/to/output/directory'
 
-# The path to the directory where the labeled images will be saved
-LABEL_DIR = os.path.join(os.path.dirname(__file__), 'labeled_images')
+# VAMPIRE analysis configurations
+VAMPIRE_CONFIG = {
+    'parameter1': 'value1',
+    'parameter2': 'value2',
+    # Add other parameters as needed
+}
 
-# The shape modes to use for coloring the images
-SHAPE_MODES = [1, 2, 3, 4, 5]
+# Thresholding configurations
+THRESHOLDING_METHODS = ['otsu', 'li', 'mean']
 
-# The colormap to use for the colored images
-COLORMAP = 'twilight'
+# Additional configurations can be added here as needed
