@@ -14,7 +14,6 @@ The software package can be applied to different datasets but is initially desig
 3. **Configure Initial Path:** The only manual input required is the initial path for the directory with images.
 4. **Run Main Script:** Execute `main.py` to initiate the process.
 
-
 ## Key Components
 - **main.py:** Entry point of the package. Calls directory with images and initiates the workflow.
 - **data_processing.py:** Module for all functions related to image data processing.
@@ -23,9 +22,6 @@ The software package can be applied to different datasets but is initially desig
 - **config.py** or **settings.yaml:** Manages configurations and parameters used across the project.
 - **requirements.txt:** Lists all project dependencies.
 - **tests/:** Holds all test files for unit and integration testing.
-
-## Testing
-Tests can be found in the `tests/` directory. Make sure to add your test cases incrementally as the development progresses.
 
 ## Collaboration with Nance Lab
 This project aligns with the goals of the Nance Lab at the University of Washington, which focuses on nanotechnology as a probe and therapeutic delivery vehicle to treat the diseased brain. [Learn more about the Nance Lab](#).
