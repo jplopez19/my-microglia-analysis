@@ -1,5 +1,4 @@
 numpy
+scikit-image
 matplotlib
 pandas
-cv2
-Pillow
