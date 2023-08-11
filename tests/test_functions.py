@@ -1,38 +1,24 @@
-# tests/test_functions.py
-
 import pytest
-from your_project_path import functions
+from microglia_analysis import functions  # Update the import path
 
-def test_preprocess_data():
-    # Example test for a preprocess_data function
-    data = 'path/to/your/data'
-    config = {'parameter': 'value'}
-    result = functions.preprocess_data(data, config)
+def test_threshold_images():
+    # Test for the threshold_images function
+    image = 'path/to/image.tif'
+    result = functions.threshold_images(image)
     # Add assertions to check the result
     assert result is not None
 
-def test_run_vampire():
-    # Example test for a run_vampire function
-    preprocessed_data = 'path/to/preprocessed_data'
-    config = {'parameter': 'value'}
-    result = functions.run_vampire(preprocessed_data, config)
-    # Add assertions to check the result
-    assert result is not None
-
-def test_postprocess_results():
-    # Example test for a postprocess_results function
-    vampire_results = 'path/to/vampire_results'
-    config = {'parameter': 'value'}
-    result = functions.postprocess_results(vampire_results, config)
+def test_segment_images():
+    # Test for the segment_images function
+    image = 'path/to/image.tif'
+    result = functions.segment_images(image)
     # Add assertions to check the result
     assert result is not None
 
 def test_run_vampire_workflow():
-    # Example test for a run_vampire_workflow function
-    data = 'path/to/your/data'
-    config = {'parameter': 'value'}
-    output_dir = 'path/to/output/directory'
-    result = functions.run_vampire_workflow(data, config, output_dir)
+    # Test for the run_vampire_workflow function
+    images = ['path/to/image1.tif', 'path/to/image2.tif']
+    result = functions.run_vampire_workflow(images)
     # Add assertions to check the result
     assert result is not None
 
