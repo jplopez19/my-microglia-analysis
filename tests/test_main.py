@@ -1,7 +1,5 @@
-# tests/# tests/test_main.py
-
 import pytest
-from your_project_path import main
+from microglia_analysis import main  # Update the import path
 from skimage.io import imread_collection
 
 def test_load_images():
