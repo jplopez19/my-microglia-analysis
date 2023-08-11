@@ -2,9 +2,14 @@ from skimage.io import imread_collection
 from data_processing import try_all_thresholds, segment_image
 from functions import run_vampire_workflow
 from visualization import create_coloring_book
+import os
 
 def load_images(path):
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"The path '{path}' does not exist.")
     images = imread_collection(path + '/*.tif') # Updated to TIFF format
+    if not images:
+        raise ValueError(f"No images found in the directory '{path}'.")
     return images
 
 def main():
@@ -21,10 +26,10 @@ def main():
     # Segment images
     segmented_images = [segment_image(image) for image in images]
 
-    # Run VAMPIRE workflow (You'll need to complete the implementation in functions.py)
+    # Run VAMPIRE workflow
     run_vampire_workflow(segmented_images)
 
-    # Create a coloring book (You'll need to complete the implementation in visualization.py)
+    # Create a coloring book
     create_coloring_book(segmented_images)
 
 if __name__ == "__main__":
