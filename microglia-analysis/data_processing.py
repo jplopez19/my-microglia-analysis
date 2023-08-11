@@ -1,9 +1,9 @@
-from skimage.filters import (
-    threshold_isodata, threshold_li, threshold_mean,
-    threshold_minimum, threshold_otsu, threshold_triangle, threshold_yen
-)
+from skimage.filters import threshold_otsu, threshold_li
 from skimage.color import rgb2gray
+from skimage.transform import resize
+from skimage.morphology import binary_dilation, binary_erosion
 import matplotlib.pyplot as plt
+import numpy as np
 
 def try_all_thresholds(image):
     # Convert to grayscale if the image is in color
@@ -32,9 +32,22 @@ def segment_image(image, method='otsu'):
     if len(image.shape) == 3:
         image = rgb2gray(image)
 
+    # Resize the image (optional, you can set the desired size)
+    resized_image = resize(image, (512, 512))
+
+    # Apply the selected thresholding method
     if method == 'otsu':
-        return threshold_otsu(image)
+        thresh_value = threshold_otsu(resized_image)
     elif method == 'li':
-        return threshold_li(image)
+        thresh_value = threshold_li(resized_image)
     else:
         raise ValueError("Invalid method")
+
+    # Threshold the image
+    binary_image = resized_image > thresh_value
+
+    # Apply morphological operations
+    dilated_image = binary_dilation(binary_image)
+    segmented_image = binary_erosion(dilated_image)
+
+    return segmented_image
