@@ -1,4 +1,7 @@
-from skimage.filters import threshold_otsu, threshold_li
+from skimage.filters import (
+    threshold_isodata, threshold_li, threshold_mean,
+    threshold_minimum, threshold_otsu, threshold_triangle, threshold_yen
+)
 from skimage.color import rgb2gray
 from skimage.transform import resize
 from skimage.morphology import binary_dilation, binary_erosion
