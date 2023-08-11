@@ -1,27 +1,17 @@
-# tests/test_data_processing.py
-
 import pytest
-from your_project_path import data_processing
+from microglia_analysis import data_processing  # Update the import path
 
-def test_preprocess_images():
-    # Example test for a preprocess_images function
-    images = ['path/to/image1.tif', 'path/to/image2.tif']
-    config = {'parameter': 'value'}
-    result = data_processing.preprocess_images(images, config)
+def test_try_all_thresholds():
+    # Test for the try_all_thresholds function
+    image = 'path/to/image.tif'
+    result = data_processing.try_all_thresholds(image)
     # Add assertions to check the result
     assert result is not None
 
-def test_segment_images():
-    # Example test for a segment_images function
-    images = ['path/to/image1.tif', 'path/to/image2.tif']
-    result = data_processing.segment_images(images)
-    # Add assertions to check the result
-    assert result is not None
-
-def test_extract_features():
-    # Example test for an extract_features function
-    segmented_images = ['path/to/segmented_image1.tif', 'path/to/segmented_image2.tif']
-    result = data_processing.extract_features(segmented_images)
+def test_segment_image():
+    # Test for the segment_image function
+    image = 'path/to/image.tif'
+    result = data_processing.segment_image(image)
     # Add assertions to check the result
     assert result is not None
 
