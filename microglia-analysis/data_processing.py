@@ -11,20 +11,22 @@ import numpy as np
 def try_all_thresholds(image):
     # Convert to grayscale if the image is in color
     if len(image.shape) == 3:
-        image = rgb2gray(image)
+        image = image[1,:,:]
 
     fig, ax = plt.subplots(nrows=3, ncols=4, figsize=(10, 10))
     methods = [
         "Original", "Isodata", "Li", "Mean",
         "Minimum", "Otsu", "Triangle", "Yen"
     ]
-    images = [
-        image, threshold_isodata(image), threshold_li(image),
-        threshold_mean(image), threshold_minimum(image),
-        threshold_otsu(image), threshold_triangle(image),
-        threshold_yen(image)
+    thresholds = [
+        None, threshold_isodata, threshold_li,
+        threshold_mean, threshold_minimum,
+        threshold_otsu, threshold_triangle,
+        threshold_yen
     ]
+    images = [image if thresh is None else image > thresh(image) for thresh in thresholds]
     for i, img in enumerate(images):
+        print(f"Shape of image {methods[i]}: {img.shape}") # Print the shape
         ax[i // 4, i % 4].imshow(img, cmap='gray')
         ax[i // 4, i % 4].set_title(methods[i])
         ax[i // 4, i % 4].axis('off')

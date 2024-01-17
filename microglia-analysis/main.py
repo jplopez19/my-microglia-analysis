@@ -1,7 +1,7 @@
 from skimage.io import imread_collection
 from data_processing import try_all_thresholds, segment_image
 from functions import run_vampire_workflow
-from visualization import create_coloring_book
+from visualizations import create_coloring_book
 import os
 
 def load_images(path):
